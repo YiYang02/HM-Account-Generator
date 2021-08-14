@@ -13,10 +13,10 @@ from flask import Flask, render_template
 
 
 class hm_script(object):
-    EMAIL_ADDRESS = ""
-    PASSWORD = ""
 
     def __init__(self):
+        self.EMAIL_ADDRESS = ""
+        self.PASSWORD = ""
         self.chrome_options = webdriver.ChromeOptions()
         self.chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         self.chrome_options.add_argument("--headless")
@@ -41,9 +41,9 @@ class hm_script(object):
 
     def generate_new_acc(self):
         session = GuerrillaMailSession()
-        hm_script.EMAIL_ADDRESS = session.get_session_state()['email_address']
+        self.EMAIL_ADDRESS = session.get_session_state()['email_address']
         response = requests.get("https://www.passwordrandom.com/query?command=password")
-        hm_script.PASSWORD = response.text
+        self.PASSWORD = response.text
 
         # PATH = r"C:\Users\yiyan\Downloads\chromedriver.exe"
         # driver = webdriver.Chrome(executable_path=PATH, options=chrome_options)
@@ -63,13 +63,13 @@ class hm_script(object):
 
         # Enters in the email address
         email_box = signup_page.find_element_by_id("email")
-        email_box.send_keys(hm_script.EMAIL_ADDRESS)
+        email_box.send_keys(self.EMAIL_ADDRESS)
 
         time.sleep(1)
 
         # Enters in the password
         password_box = signup_page.find_element_by_name("password")
-        password_box.send_keys(hm_script.PASSWORD)
+        password_box.send_keys(self.PASSWORD)
 
         time.sleep(1)
 
@@ -105,8 +105,8 @@ class hm_script(object):
 
         # driver.get_screenshot_as_file("screenshot2.png")
 
-        print("Email Address: ", hm_script.EMAIL_ADDRESS)
-        print("Password: ", hm_script.PASSWORD)
+        print("Email Address: ", self.EMAIL_ADDRESS)
+        print("Password: ", self.PASSWORD)
 
         time.sleep(5)
 
