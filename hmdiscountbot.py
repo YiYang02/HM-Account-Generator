@@ -37,7 +37,7 @@ class hm_script(object):
         # Give browser option to incognito
         self.chrome_options.add_argument("--incognito")
         # self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
-        self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=self.chrome_options)
+        self.driver = webdriver.Chrome(executable_path=r"C:\Users\yiyan\Downloads\chromedriver.exe", options=self.chrome_options)
 
     def generate_new_acc(self):
         session = GuerrillaMailSession()
@@ -114,23 +114,29 @@ class hm_script(object):
 
         driver.quit()
 
+    def get_email_address(self):
+        return self.EMAIL_ADDRESS
+
+    def get_password(self):
+        return self.PASSWORD
+
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def get_account_info():
+    script = hm_script()
+    script.generate_new_acc()
+
     account_info = {
-        'email': script.EMAIL_ADDRESS,
-        'password': script.PASSWORD
+        'email': script.get_email_address(),
+        'password': script.get_password()
     }
     return render_template('index.html', account_info=account_info)
 
 
 if __name__ == "__main__":
-    global script
-    script = hm_script()
-    script.generate_new_acc()
     app.run()
 
 
