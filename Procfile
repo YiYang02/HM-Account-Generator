@@ -1,1 +1,1 @@
-web: gunicorn app:hmdiscountbot
+web: gunicorn hmdiscountbot:app

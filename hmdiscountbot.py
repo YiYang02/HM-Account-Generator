@@ -117,6 +117,7 @@ class hm_script(object):
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def get_account_info():
     account_info = {
