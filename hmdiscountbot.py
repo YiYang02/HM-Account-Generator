@@ -37,7 +37,7 @@ class hm_script(object):
         # Give browser option to incognito
         self.chrome_options.add_argument("--incognito")
         # self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
-        self.driver = webdriver.Chrome(executable_path=r"C:\Users\yiyan\Downloads\chromedriver.exe", options=self.chrome_options)
+        self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=self.chrome_options)
 
     def generate_new_acc(self):
         session = GuerrillaMailSession()
