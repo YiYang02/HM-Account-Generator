@@ -1,1 +1,1 @@
-worker: python hmdiscountbot.py
+web: gunicorn app:hmdiscountbot
