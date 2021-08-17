@@ -1,5 +1,3 @@
-# HM-Account-Generator
-
 # H&M New Account Generator
 
 Script that automatically creates a new H&M account for user to use. To use, either download the script file or go to https://hm-account-generator.herokuapp.com/. 
